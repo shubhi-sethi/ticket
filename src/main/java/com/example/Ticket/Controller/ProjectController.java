@@ -1,0 +1,41 @@
+package com.example.Ticket.Controller;
+
+import com.example.Ticket.Dto.ProjectDto;
+import com.example.Ticket.Service.ProjectService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.example.Ticket.Entity.Project;
+
+@RestController
+@RequestMapping("/api/project")
+public class ProjectController
+{
+
+    @Autowired
+    private ProjectService projectService;
+
+    @PostMapping("/create")
+    public ResponseEntity<Project> createProject(@RequestBody Project ticket){
+        Project ticketCreated = projectService.createProject(ticket);
+        return new ResponseEntity<Project>(ticketCreated, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/delete/{id}")
+    public void deleteProject(@PathVariable("id") long projectId){
+        projectService.deleteProject(projectId);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ProjectDto> getProjectDetails(@PathVariable("id") long projectId){
+        ProjectDto projectDto = projectService.getProjectDetails(projectId);
+        return new ResponseEntity<ProjectDto>(projectDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/get/{userId}")
+    public ResponseEntity<ProjectDto> getProjectDetailsByUser(@PathVariable("userId") long userId){
+        ProjectDto projectDto = projectService.getProjectDetailsByUser(userId);
+        return new ResponseEntity<ProjectDto>(projectDto, HttpStatus.OK);
+    }
+}

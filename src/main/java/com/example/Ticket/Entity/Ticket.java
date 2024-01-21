@@ -34,6 +34,6 @@ public class Ticket {
     @Column(name = "created_by",nullable = false)
     private long createdBy;
 
-    @Column(name="created_on",nullable = false)
+    @Column(name="created_on",nullable = true)
     private Timestamp createdOn;
 }

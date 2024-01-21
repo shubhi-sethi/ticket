@@ -1,6 +1,5 @@
 package com.example.Ticket.Controller;
 
-import com.example.Ticket.Dto.ProjectDto;
 import com.example.Ticket.Dto.TicketDto;
 import com.example.Ticket.Service.TicketService;
 import org.springframework.http.HttpStatus;

@@ -17,9 +17,9 @@ public class ProjectController
     private ProjectService projectService;
 
     @PostMapping("/create")
-    public ResponseEntity<Project> createProject(@RequestBody Project ticket){
-        Project ticketCreated = projectService.createProject(ticket);
-        return new ResponseEntity<Project>(ticketCreated, HttpStatus.CREATED);
+    public ResponseEntity<Project> createProject(@RequestBody Project project){
+        Project projectCreated = projectService.createProject(project);
+        return new ResponseEntity<Project>(projectCreated, HttpStatus.CREATED);
     }
 
     @PostMapping("/delete/{id}")

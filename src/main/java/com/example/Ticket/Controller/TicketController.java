@@ -39,7 +39,7 @@ public class TicketController
         return new ResponseEntity<TicketDto>(ticketDto, HttpStatus.OK);
     }
 
-    @GetMapping("/get/{projectId}")
+    @GetMapping("/getDetails/{projectId}")
     public ResponseEntity<TicketDto> getTicketDetailsByProjectId(@PathVariable("projectId") long projectId){
         TicketDto TicketDto = ticketService.getTicketDetailsByProjectId(projectId);
         return new ResponseEntity<TicketDto>(TicketDto, HttpStatus.OK);

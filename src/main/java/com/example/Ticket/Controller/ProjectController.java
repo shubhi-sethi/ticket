@@ -33,7 +33,7 @@ public class ProjectController
         return new ResponseEntity<ProjectDto>(projectDto, HttpStatus.OK);
     }
 
-    @GetMapping("/get/{userId}")
+    @GetMapping("/getDetails/{userId}")
     public ResponseEntity<ProjectDto> getProjectDetailsByUser(@PathVariable("userId") long userId){
         ProjectDto projectDto = projectService.getProjectDetailsByUser(userId);
         return new ResponseEntity<ProjectDto>(projectDto, HttpStatus.OK);

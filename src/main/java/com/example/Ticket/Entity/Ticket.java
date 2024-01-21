@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name="tickets" , schema="ticket_management")
+@Table(name="tickets")
 public class Ticket {
 
     @Id

@@ -1,7 +1,11 @@
 package com.example.Ticket.Dto;
 
-import java.sql.Timestamp;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.sql.Timestamp;
+@Getter
+@Setter
 public class TicketDto {
 
     private long projectIdFk;

@@ -22,9 +22,9 @@ public class TicketController
         return new ResponseEntity<Ticket>(ticketCreated, HttpStatus.CREATED);
     }
 
-    @PostMapping("/update")
-    public ResponseEntity<Ticket> updateTicket(@RequestBody Ticket ticket){
-        Ticket ticketUpdated = ticketService.updateTicket(ticket);
+    @PostMapping("/update/{id}")
+    public ResponseEntity<Ticket> updateTicket(@RequestBody TicketDto ticketDto,@PathVariable("id") Long id){
+        Ticket ticketUpdated = ticketService.updateTicket(id,ticketDto);
         return new ResponseEntity<Ticket>(ticketUpdated, HttpStatus.CREATED);
     }
 

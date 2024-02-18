@@ -10,5 +10,5 @@ public interface TicketService {
     public TicketDto getTicketDetailsByProjectId(long projectId);
     public Ticket createTicket(Ticket ticket);
     public void deleteTicket(long id);
-    public Ticket updateTicket(Ticket ticket);
+    public Ticket updateTicket(long id , TicketDto ticketDto);
 }

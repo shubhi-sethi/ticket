@@ -1,16 +1,10 @@
 package com.example.Ticket.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name="users")
 public class User {
 
@@ -24,8 +18,20 @@ public class User {
     @Column(name = "password",nullable = false)
     private String password;
 
-    @Column(name = "project_id_fk",nullable = false)
-    private long projectIdFk;
+    public Set<Project> getProjectTagged() {
+        return projectTagged;
+    }
+
+    public void setProjectTagged(Set<Project> projectTagged) {
+        this.projectTagged = projectTagged;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_to_project_mapping",
+            joinColumns = @JoinColumn(name = "user_id_fk"),
+            inverseJoinColumns = @JoinColumn(name = "project_id_fk"))
+    Set<Project> projectTagged;
 
     @Column(name = "is_admin",nullable = false)
     private boolean isAdmin;
@@ -52,14 +58,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public long getProjectIdFk() {
-        return projectIdFk;
-    }
-
-    public void setProjectIdFk(long projectIdFk) {
-        this.projectIdFk = projectIdFk;
     }
 
     public boolean isAdmin() {

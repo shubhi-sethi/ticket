@@ -1,12 +1,10 @@
 package com.example.Ticket.Entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 @Table(name="project")
 public class Project {
     @Id
@@ -18,6 +16,17 @@ public class Project {
 
     @Column(name = "description",nullable = false)
     private String description;
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    @ManyToMany(mappedBy = "projectTagged")
+    Set<User> users;
 
     public long getId() {
         return id;

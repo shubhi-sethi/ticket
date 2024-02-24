@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.Ticket.Entity.Project;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/project")
 public class ProjectController
@@ -34,8 +36,8 @@ public class ProjectController
     }
 
     @GetMapping("/getDetails/{userId}")
-    public ResponseEntity<ProjectDto> getProjectDetailsByUser(@PathVariable("userId") long userId){
-        ProjectDto projectDto = projectService.getProjectDetailsByUser(userId);
-        return new ResponseEntity<ProjectDto>(projectDto, HttpStatus.OK);
+    public ResponseEntity<List<ProjectDto>> getProjectDetailsByUser(@PathVariable("userId") long userId){
+        List<ProjectDto> projectDtoList = projectService.getProjectDetailsByUser(userId);
+        return new ResponseEntity<List<ProjectDto>>(projectDtoList, HttpStatus.OK);
     }
 }

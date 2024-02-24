@@ -1,10 +1,4 @@
 package com.example.Ticket.Dto;
-
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class ProjectDto {
     public String getName() {
         return name;

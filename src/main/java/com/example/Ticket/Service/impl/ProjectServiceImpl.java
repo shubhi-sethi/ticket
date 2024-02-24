@@ -3,6 +3,7 @@ package com.example.Ticket.Service.impl;
 import com.example.Ticket.Dto.ProjectDto;
 import com.example.Ticket.Entity.Project;
 import com.example.Ticket.Entity.User;
+import com.example.Ticket.Mapper.ProjectMapper;
 import com.example.Ticket.Repository.ProjectRepo;
 import com.example.Ticket.Repository.UserRepo;
 import com.example.Ticket.Service.ProjectService;
@@ -10,8 +11,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProjectServiceImpl implements ProjectService {
+
+    private final ProjectMapper projectMapper;
 
     @Autowired
     ProjectRepo projectRepo;
@@ -21,6 +28,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    public ProjectServiceImpl(ProjectMapper projectMapper) {
+        this.projectMapper = projectMapper;
+    }
+
     @Override
     public ProjectDto getProjectDetails(long id){
         Project project = projectRepo.findById(id);
@@ -28,10 +40,10 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public ProjectDto getProjectDetailsByUser(long userId){
+    public List<ProjectDto> getProjectDetailsByUser(long userId){
         User user = userRepo.findById(userId);
-        Project project = projectRepo.findById(user.getProjectIdFk());
-        return modelMapper.map(project, ProjectDto.class);
+        Set<Project> projectTagged = user.getProjectTagged();
+        return  projectMapper.toDto((projectTagged.stream().collect(Collectors.toList())));
     }
 
     @Override

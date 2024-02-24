@@ -1,14 +1,10 @@
 package com.example.Ticket.Entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.sql.Timestamp;
 
 @Entity
-@Getter
-@Setter
 @Table(name="tickets")
 public class Ticket {
 
